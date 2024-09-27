@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Date Formats Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>JavaScript Date Formats Example</h2>
+
+    <h3>Formatted Date:</h3>
+    <p id="formattedDate"></p>
+
+    <h3>Current Date in Different Formats:</h3>
+    <p id="isoFormat"></p>
+    <p id="localeFormat"></p>
+    <p id="customFormat"></p>
+
+    <script>
+        // Function to format a Date object into "MM/DD/YYYY" format
+        function formatDate(date) {
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+            const day = String(date.getDate()).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${month}/${day}/${year}`;
+        }
+
+        
+        const currentDate = new Date();
+
+   
+        const formattedDate = formatDate(currentDate);
+        document.getElementById('formattedDate').innerText = `Formatted Date (MM/DD/YYYY): ${formattedDate}`;
+
+       
+        document.getElementById('isoFormat').innerText = `ISO Format: ${currentDate.toISOString()}`;
+        document.getElementById('localeFormat').innerText = `Locale String Format: ${currentDate.toLocaleString()}`;
+        
+        // Format( "DD-MMM-YYYY")
+        const customFormattedDate = `${String(currentDate.getDate()).padStart(2, '0')}-${currentDate.toLocaleString('default', { month: 'short' })}-${currentDate.getFullYear()}`;
+        document.getElementById('customFormat').innerText = `Custom Format (DD-MMM-YYYY): ${customFormattedDate}`;
+    </script>
+</body>
+</html>
